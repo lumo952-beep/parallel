@@ -2,6 +2,8 @@ import { triangleGeometry, presets } from './geometry.js';
 const $ = id => document.getElementById(id);
 const names = ['A', 'B', 'C'];
 const midpointNames = ['M', 'N', 'P'];
+// Match each vertex, its opposite midpoint, and its median by color.
+const vertexColors = ['#d44179', '#2673ce', '#7851cc'];
 const descriptions = [
   '먼저 삼각형 ABC를 만들어요. 꼭짓점을 움직이거나 위에서 다른 삼각형을 선택해 보세요.',
   '각 변의 양 끝에서 같은 거리에 있는 중점 M, N, P를 찾아요. M은 BC의 중점이에요.',
@@ -21,34 +23,34 @@ function draw() {
   const g = triangleGeometry(points);
   const layers = [];
   if ($('grid').checked) {
-    for(let x=0;x<=12;x++) layers.push(line({x,y:0},{x,y:8},'stroke="#e9efeb" stroke-width="1"'));
-    for(let y=0;y<=8;y++) layers.push(line({x:0,y},{x:12,y},'stroke="#e9efeb" stroke-width="1"'));
-    for(let x=0;x<=12;x+=2) layers.push(`<text x="${sx(x)}" y="531" text-anchor="middle" fill="#b5c1b9" font-size="10">${x}</text>`);
-    for(let y=0;y<=8;y+=2) layers.push(`<text x="44" y="${sy(y)+4}" text-anchor="middle" fill="#b5c1b9" font-size="10">${y}</text>`);
+    for(let x=0;x<=12;x++) layers.push(line({x,y:0},{x,y:8},'stroke="#e9e5f4" stroke-width="1"'));
+    for(let y=0;y<=8;y++) layers.push(line({x:0,y},{x:12,y},'stroke="#e9e5f4" stroke-width="1"'));
+    for(let x=0;x<=12;x+=2) layers.push(`<text x="${sx(x)}" y="531" text-anchor="middle" fill="#8d86a3" font-size="10">${x}</text>`);
+    for(let y=0;y<=8;y+=2) layers.push(`<text x="44" y="${sy(y)+4}" text-anchor="middle" fill="#8d86a3" font-size="10">${y}</text>`);
   }
-  if ($('trace').checked && trail.length>1) layers.push(`<polyline points="${trail.map(p=>`${sx(p.x)},${sy(p.y)}`).join(' ')}" fill="none" stroke="#d5ac65" stroke-width="2" opacity=".8"/>`);
-  layers.push(`<polygon points="${points.map(p=>`${sx(p.x)},${sy(p.y)}`).join(' ')}" fill="#198564" fill-opacity=".055" stroke="#567b68" stroke-width="2" stroke-linejoin="round"/>`);
-  if(stage>=2) points.forEach((p,i) => layers.push(line(p,g.midpoints[i],`stroke="${selected===i?'#198564':'#aac8b8'}" stroke-width="${selected===i?2.5:1.4}" ${selected===i?'':'stroke-dasharray="6 5"'}`)));
+  if ($('trace').checked && trail.length>1) layers.push(`<polyline points="${trail.map(p=>`${sx(p.x)},${sy(p.y)}`).join(' ')}" fill="none" stroke="#df8b16" stroke-width="3" opacity=".8"/>`);
+  layers.push(`<polygon points="${points.map(p=>`${sx(p.x)},${sy(p.y)}`).join(' ')}" fill="#a98ae8" fill-opacity=".13" stroke="#9b85be" stroke-width="2.5" stroke-linejoin="round"/>`);
+  if(stage>=2) points.forEach((p,i) => layers.push(line(p,g.midpoints[i],`stroke="${vertexColors[i]}" stroke-width="${selected===i?3.5:2}" ${selected===i?'':'stroke-dasharray="6 5"'}`)));
   if(stage>=1) g.midpoints.forEach((p,i)=>{
-    layers.push(circle(p,4,'fill="#fcfdfc" stroke="#83ab95" stroke-width="1.8"'));
+    layers.push(circle(p,5,`fill="white" stroke="${vertexColors[i]}" stroke-width="2"`));
     const dx = p.x >= g.center.x ? 13 : -22;
     const dy = p.y >= g.center.y ? -12 : 23;
-    layers.push(label(p,midpointNames[i],dx,dy,'#7a9b87'));
+    layers.push(label(p,midpointNames[i],dx,dy,vertexColors[i]));
   });
   if(stage>=4 && $('ratioLabels').checked && g.valid) {
     const p=points[selected], m=g.midpoints[selected];
     const a={x:(p.x+g.center.x)/2,y:(p.y+g.center.y)/2}, b={x:(m.x+g.center.x)/2,y:(m.y+g.center.y)/2};
-    layers.push(`<text x="${sx(a.x)+12}" y="${sy(a.y)-8}" class="ratio-label">2</text><text x="${sx(b.x)+12}" y="${sy(b.y)-8}" class="ratio-label">1</text>`);
+    layers.push(`<text x="${sx(a.x)+12}" y="${sy(a.y)-8}" class="ratio-label" style="fill:${vertexColors[selected]}">2</text><text x="${sx(b.x)+12}" y="${sy(b.y)-8}" class="ratio-label" style="fill:${vertexColors[selected]}">1</text>`);
   }
   if(stage>=3 && g.valid) {
-    layers.push(circle(g.center,14,'fill="#e8ae4c" fill-opacity=".13"'));
-    layers.push(circle(g.center,6,'fill="#d6a348" stroke="white" stroke-width="2"'));
-    layers.push(label(g.center,'G',14,-12,'#b3883f'));
+    layers.push(circle(g.center,17,'fill="#ffc857" fill-opacity=".3"'));
+    layers.push(circle(g.center,8,'fill="#f5a623" stroke="white" stroke-width="2.5"'));
+    layers.push(label(g.center,'G',17,-14,'#a56509'));
   }
   points.forEach((p,i)=>{
-    layers.push(`<g class="vertex-handle" data-handle="${i}">${circle(p,20,'fill="transparent"')}${selected===i?circle(p,12,'fill="#198564" fill-opacity=".10"'):''}${circle(p,6,`fill="${selected===i?'#198564':'#fcfdfc'}" stroke="#198564" stroke-width="2.5"`)}</g>`);
+    layers.push(`<g class="vertex-handle" data-handle="${i}">${circle(p,20,'fill="transparent"')}${selected===i?circle(p,15,`fill="${vertexColors[i]}" fill-opacity=".14"`):''}${circle(p,8,`fill="${selected===i?vertexColors[i]:'white'}" stroke="${vertexColors[i]}" stroke-width="3"`)}</g>`);
     const dx = p.x>=g.center.x?13:-26, dy=p.y>=g.center.y?-15:27;
-    layers.push(label(p,names[i],dx,dy,'#356c50'));
+    layers.push(label(p,names[i],dx,dy,vertexColors[i]));
     if ($('coordinates').checked) layers.push(`<text x="${sx(p.x)+dx}" y="${sy(p.y)+dy+17}" class="svg-coordinate">(${p.x.toFixed(1)}, ${p.y.toFixed(1)})</text>`);
   });
   $('canvas').innerHTML=layers.join('');

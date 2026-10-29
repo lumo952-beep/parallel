@@ -1,11 +1,11 @@
 :root {
   font-family:Inter,Pretendard,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;
-  color:#24332f;
-  background:#f5f6f8;
+  color:#3b3557;
+  background:#fffaf3;
   font-synthesis:none;
-  --green:#168567;
-  --muted:#83908c;
-  --line:#e8eeeb;
+  --green:#7751cc;
+  --muted:#807891;
+  --line:#eee6f7;
 }
 * {
   box-sizing:border-box;
@@ -20,7 +20,7 @@ button {
   cursor:pointer;
 }
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
-  outline:3px solid #49b99d;
+  outline:3px solid #ad83ed;
   outline-offset:4px;
 }
 button {
@@ -40,7 +40,7 @@ button:hover {
 }
 .brand {
   text-decoration:none;
-  color:#24332f;
+  color:#3b3557;
   font-weight:750;
   display:flex;
   align-items:center;
@@ -54,14 +54,14 @@ button:hover {
 .brand-tag {
   font-size:10px;
   letter-spacing:1.8px;
-  color:#97a29d;
+  color:#837991;
   border-left:1px solid #dee6e1;
   padding-left:15px;
   margin-left:5px;
 }
 .subject {
   font-size:12px;
-  color:#7f8c87;
+  color:#786e8a;
 }
 .subject span {
   margin:0 12px;
@@ -96,7 +96,7 @@ h1 {
 }
 .subtitle {
   font-size:14px;
-  color:#7c8983;
+  color:#756d87;
   margin:0;
 }
 .lesson-badge {
@@ -123,7 +123,7 @@ h1 {
   font-size:9px;
   letter-spacing:2px;
   margin-top:6px;
-  color:#98a79f;
+  color:#857791;
 }
 .workspace {
   display:grid;
@@ -288,7 +288,7 @@ input[type=checkbox] {
 .steps button {
   border:0;
   background:transparent;
-  color:#9ba59f;
+  color:#817591;
   font-size:10px;
   position:relative;
   flex:1;
@@ -357,7 +357,7 @@ input[type=checkbox] {
   gap:7px;
   align-items:center;
   font-size:10px;
-  color:#8c9a91;
+  color:#786e8a;
 }
 .speed select {
   border:1px solid #e5eae7;
@@ -479,7 +479,7 @@ input[type=checkbox] {
   font-family:Georgia,serif;
   font-style:italic;
   margin-left:5px;
-  color:#a2afa6;
+  color:#81758e;
 }
 .slider-heading output {
   font-size:11px;
@@ -499,7 +499,7 @@ input[type=range] {
 }
 .slider-help {
   font-size:10px;
-  color:#9ca89f;
+  color:#81758e;
   margin:18px 0 0;
 }
 .section-heading>.live-mini {
@@ -524,7 +524,7 @@ input[type=range] {
 }
 .formula {
   font-size:9px;
-  color:#a1ada5;
+  color:#81758e;
   padding:12px 0 17px;
   border-bottom:1px solid var(--line);
   letter-spacing:-.2px;
@@ -559,7 +559,7 @@ input[type=range] {
 }
 .measurement-note {
   font-size:9px;
-  color:#a2aea6;
+  color:#81758e;
   margin:12px 0 0;
 }
 .explore-note {
@@ -584,13 +584,13 @@ input[type=range] {
 .explore-note p {
   font-size:11px;
   line-height:1.7;
-  color:#89958c;
+  color:#776a84;
   margin:0;
 }
 footer {
   display:flex;
   justify-content:space-between;
-  color:#a0aba4;
+  color:#84768e;
   font-size:10px;
   padding:26px 3px 5px;
 }
@@ -615,7 +615,7 @@ footer {
 .svg-coordinate {
   font-family:inherit;
   font-size:11px;
-  fill:#83978b;
+  fill:#756a8e;
   paint-order:stroke;
   stroke:#fcfdfc;
   stroke-width:4px;
@@ -763,4 +763,89 @@ footer {
   .formula {
     font-size:10px;
   }
+}
+
+/* A cheerful, color-matched palette for young explorers. */
+body {
+  background: radial-gradient(ellipse at 5% 8%, #ffe7ee 0, transparent 35%),
+    radial-gradient(ellipse at 98% 30%, #e7f2ff 0, transparent 38%), #fffaf3;
+}
+.topbar { border-bottom: 2px solid #eee5fa; }
+.brand-icon { color: #e16b95; }
+.brand-tag { color: #8b77a5; border-color: #e9ddf7; }
+h1 { color: #59418d; }
+.title-dot { color: #efac26; }
+.lesson-badge > span { color: #b47209; background: #fff0c7; border: 2px solid #ffdb83; }
+.lesson-badge { color: #7e659d; }
+.panel { border: 2px solid #ede4f7; border-radius: 22px; box-shadow: 0 6px 0 #cab5e114, 0 12px 30px #9171b008; }
+.live-label { color: #675188; }
+.live-label > span { background: #ef83a6; box-shadow: 0 0 0 4px #fff0f5; }
+.text-button { color: #7d6b93; }
+.preset-row { gap: 8px; }
+.chip { --chip-color: #af3966; --chip-bg: #fff0f5; --chip-border: #f6c5d7; background: var(--chip-bg); color: var(--chip-color); border: 1.5px solid var(--chip-border); border-radius: 11px; font-weight: 650; padding: 9px 13px; }
+.chip:nth-child(2) { --chip-color: #2265ad; --chip-bg: #edf6ff; --chip-border: #c6defa; }
+.chip:nth-child(3) { --chip-color: #90651a; --chip-bg: #fff7df; --chip-border: #f2dfa4; }
+.chip:nth-child(4) { --chip-color: #6d49b3; --chip-bg: #f4edff; --chip-border: #ddcbf7; }
+.chip:nth-child(5) { --chip-color: #21836d; --chip-bg: #e9faf3; --chip-border: #b9e8d8; }
+.chip:nth-child(6) { --chip-color: #ba572c; --chip-bg: #fff1e9; --chip-border: #f4ceba; }
+.chip.active { color: var(--chip-color); background: var(--chip-bg); border-color: var(--chip-color); box-shadow: 0 3px 0 var(--chip-border); }
+.canvas-wrap { background: #fffdff; border-color: #f1eafa; }
+.canvas-caption { color: #837092; }
+.cursor-symbol { color: #b37bd4; }
+.kind-badge { color: #77509d; background: #f1e8fc; border-radius: 8px; }
+.canvas-options { color: #75638b; border-color: #eee5f8; background: #fdfaff; }
+.canvas-options label:nth-child(2) input { accent-color: #2673ce; }
+.canvas-options label:nth-child(3) input { accent-color: #d44179; }
+.canvas-options label:nth-child(4) input { accent-color: #c47c09; }
+.section-heading h2 { color: #63507d; }
+.section-heading > span { color: #89759b; }
+.steps button { --step-color: #ce4d7c; --step-bg: #fff0f5; color: #82728e; }
+.steps button:nth-child(2) { --step-color: #bd810e; --step-bg: #fff7df; }
+.steps button:nth-child(3) { --step-color: #3180ce; --step-bg: #edf6ff; }
+.steps button:nth-child(4) { --step-color: #8d59cf; --step-bg: #f5edff; }
+.steps button:nth-child(5) { --step-color: #29947c; --step-bg: #e9faf3; }
+.steps:before { background: linear-gradient(90deg, #f4b9d1, #f7db9e, #b4d9ff, #dfbdf8, #b5e8d8); height: 3px; }
+.steps button span, .steps button.done span { background: var(--step-bg); border: 2px solid var(--step-color); color: var(--step-color); font-weight: 750; }
+.steps button.current { color: var(--step-color); }
+.steps button.current span { background: var(--step-color); border-color: var(--step-color); box-shadow: 0 0 0 5px var(--step-bg); }
+.play-button { background: linear-gradient(120deg, #9061de, #7551ca); box-shadow: 0 4px 0 #e6d6f7; border-radius: 11px; font-weight: 700; }
+.icon-button { color: #8b62ba; border-color: #e6d8f6; background: #fcf8ff; border-radius: 9px; }
+.speed select { color: #7a6093; border-color: #e9ddf5; }
+.step-description { color: #78658a; background: #faf5ff; border-radius: 12px; padding: 12px 14px; }
+.insight { background: linear-gradient(145deg, #fff8df, #fff0e4); border-color: #f4dba3; }
+.insight .eyebrow { color: #b17415; }
+.insight h2 { color: #775226; }
+.insight h2 span { color: #cc7629; }
+.insight > p:not(.eyebrow) { color: #8c6b44; }
+.insight strong { color: #b26c27; }
+.ratio-diagram { color: #907147; }
+.ratio-diagram i { background: #f0a33a; }
+.ratio-diagram .short { background: #ef91af; }
+.ratio-diagram b, .ratio-diagram small { color: #bc6d26; }
+.insight-note { color: #947247; border-color: #f0dcb7; }
+.vertex-tabs button { --vertex-color: #d44179; --vertex-bg: #fff0f5; --vertex-border: #f4bdd2; color: var(--vertex-color); background: var(--vertex-bg); border: 2px solid var(--vertex-border); border-radius: 10px; font-weight: 700; }
+.vertex-tabs button:nth-child(2) { --vertex-color: #2673ce; --vertex-bg: #edf6ff; --vertex-border: #c1dafa; }
+.vertex-tabs button:nth-child(3) { --vertex-color: #7851cc; --vertex-bg: #f4edff; --vertex-border: #dac7f6; }
+.vertex-tabs button.active { background: var(--vertex-color); border-color: var(--vertex-color); color: white; box-shadow: 0 3px 0 var(--vertex-border); }
+.slider-heading { color: #7c648e; }
+.slider-heading output { color: #855fa5; background: #f5eefd; border-radius: 7px; }
+#x { accent-color: #d44179; }
+#y { accent-color: #2673ce; }
+.center-coordinate { color: #79638c; }
+.center-coordinate strong { color: #8a58c6; }
+.formula { color: #8a7998; border-color: #eee5f7; }
+.measurement-row { color: #7e6c90; }
+.measurement-row strong { color: #64507f; }
+.ratio-result { background: linear-gradient(110deg, #f0e8ff, #ffedf4); border-radius: 12px; color: #8a619d; }
+.ratio-result strong { color: #b34485; }
+.section-heading > .live-mini { color: #b54a80; background: #ffedf4; border-radius: 6px; }
+.explore-note { border: 2px solid #dbe9fc; background: #eff7ff; border-radius: 18px; }
+.explore-note > span { color: #e7a52f; }
+.explore-note h2 { color: #4474a8; }
+.explore-note p { color: #6c80a0; }
+.svg-label { font-weight: 700; stroke: #fffdff; }
+.svg-coordinate { fill: #7e6f94; stroke: #fffdff; }
+.ratio-label { stroke: #fffdff; }
+@media (max-width: 420px) {
+  .chip { padding: 8px 10px; }
 }
