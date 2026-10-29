@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f8">
+  <meta name="description" content="삼각형의 꼭짓점을 움직이며 중선과 무게중심, 2:1 성질을 탐구하는 수학 시뮬레이션">
+  <title>삼각형의 무게중심 · 도형 실험실</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./"><span class="brand-icon">△</span> 도형 실험실 <span class="brand-tag">GEOMETRY LAB</span></a><span class="subject">수학 탐구 <span>/</span> 삼각형</span></header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">직접 움직이고, 발견하는 수학</p><h1>삼각형의 무게중심<span class="title-dot">.</span></h1><p class="subtitle">모양은 달라져도, 변하지 않는 성질이 있어요.</p></div><div class="lesson-badge"><span>G</span><div>세 중선이 만나는 한 점<small>THE CENTROID</small></div></div></div>
+    <div class="workspace">
+      <section class="experiment panel" aria-label="삼각형 실험 영역">
+        <div class="canvas-toolbar"><div class="live-label"><span></span> 인터랙티브 캔버스</div><button id="reset" class="text-button" title="현재 삼각형을 처음 상태로 되돌리기">↺ 초기화</button></div>
+        <div class="preset-row" role="group" aria-label="삼각형 상황 선택">
+          <button data-preset="acute" class="chip active" aria-pressed="true">예각</button><button data-preset="right" class="chip" aria-pressed="false">직각</button><button data-preset="obtuse" class="chip" aria-pressed="false">둔각</button><button data-preset="isosceles" class="chip" aria-pressed="false">이등변</button><button data-preset="equilateral" class="chip" aria-pressed="false">정삼각형</button><button id="random" class="chip random-chip">⤨ 무작위</button>
+        </div>
+        <div class="canvas-wrap"><svg id="canvas" viewBox="0 0 800 560" role="img" aria-label="드래그하여 조절할 수 있는 삼각형. 키보드 조절은 오른쪽 꼭짓점 슬라이더를 사용하세요."></svg><div class="canvas-caption"><span class="cursor-symbol">↖</span> 꼭짓점을 드래그해 보세요 <span id="kind" class="kind-badge">예각삼각형</span></div></div>
+        <p id="warning" class="warning" role="status" hidden>세 점이 일직선이거나 겹쳐 있어요. 꼭짓점을 움직여 삼각형을 만들어 주세요.</p>
+        <div class="canvas-options"><label><input id="grid" type="checkbox" checked> 격자</label><label><input id="coordinates" type="checkbox"> 좌표</label><label><input id="ratioLabels" type="checkbox" checked> 길이 비율</label><label><input id="trace" type="checkbox"> 무게중심 자취</label><button id="clear-trace" class="text-button">자취 지우기</button></div>
+        <div class="construction"><div class="section-heading"><h2>작도 과정</h2><span id="step-count">5 / 5</span></div><div class="steps" aria-label="작도 단계 선택"><button data-step="0"><span>1</span>삼각형</button><button data-step="1"><span>2</span>중점</button><button data-step="2"><span>3</span>중선</button><button data-step="3"><span>4</span>무게중심</button><button data-step="4"><span>5</span>2:1 확인</button></div><div class="playback"><button id="play" class="play-button">▶ 과정 재생</button><button id="previous" class="icon-button" aria-label="이전 단계">‹</button><button id="next" class="icon-button" aria-label="다음 단계">›</button><div class="speed"><label for="speed">재생 속도</label><select id="speed"><option value="2200">느리게</option><option value="1400" selected>보통</option><option value="700">빠르게</option></select></div></div><p id="step-description" class="step-description" aria-live="polite"></p></div>
+      </section>
+      <aside class="sidebar">
+        <section class="panel insight"><p class="eyebrow">발견할 성질</p><h2>언제나, <span>2 : 1</span></h2><p>무게중심은 각 중선을 꼭짓점에서부터<br><strong>2 : 1</strong>로 나누어요.</p><div class="ratio-diagram"><span>꼭짓점</span><i class="long"></i><b>G</b><i class="short"></i><span>중점</span><small>2</small><small>1</small></div><div class="insight-note">세 중선은 모두 한 점 G에서 만나요.</div></section>
+        <section class="panel adjust"><div class="section-heading"><h2>꼭짓점 조절</h2><span class="small-muted">좌표로 정밀하게</span></div><div class="vertex-tabs" role="group" aria-label="조절할 꼭짓점"><button data-vertex="0" class="active" aria-pressed="true">A</button><button data-vertex="1" aria-pressed="false">B</button><button data-vertex="2" aria-pressed="false">C</button></div><div class="slider-heading"><label for="x">가로 <span>x</span></label><output id="x-value" for="x"></output></div><input id="x" type="range" min="0.5" max="11.5" step="0.1"><div class="slider-heading"><label for="y">세로 <span>y</span></label><output id="y-value" for="y"></output></div><input id="y" type="range" min="0.5" max="8" step="0.1"><p class="slider-help">선택한 꼭짓점의 중선이 강조됩니다.</p></section>
+        <section class="panel measurements"><div class="section-heading"><h2>실시간 관찰</h2><span class="live-mini">LIVE</span></div><div class="center-coordinate"><span>무게중심 G</span><strong id="center-value"></strong></div><div class="formula">G = (<span>x₁ + x₂ + x₃</span>) / 3 , (<span>y₁ + y₂ + y₃</span>) / 3</div><div class="measurement-row"><span id="upper-label">AG · 꼭짓점 → G</span><strong id="upper-value"></strong></div><div class="measurement-row"><span id="lower-label">GM · G → 중점</span><strong id="lower-value"></strong></div><div class="ratio-result"><span>두 길이의 비</span><strong id="ratio-value">2.00 : 1</strong></div><p class="measurement-note">길이는 좌표 단위 · 소수 둘째 자리 반올림</p></section>
+      </aside>
+    </div>
+    <section class="explore-note"><span>✧</span><div><h2>이렇게 탐구해 보세요</h2><p>직각삼각형이나 둔각삼각형으로 바꿔도 무게중심은 삼각형 안에 있을까요? 한 꼭짓점만 움직이며 G의 자취도 관찰해 보세요.</p></div></section>
+    <footer>도형 실험실 <span>직접 해보면, 수학이 보입니다.</span></footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
